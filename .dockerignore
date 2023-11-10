@@ -2,3 +2,5 @@
 main.vue
 notes.md
 __pycache__
+.dockerignore
+.gitignore
