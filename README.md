@@ -30,10 +30,11 @@ $ python -m venv .
 ```sh 
 $ .venv/bin/python -m pip install -r requirements.txt
 ```
-* Run the `__init__.py`:
+* Run the `main.py`:
 ```sh
-$ .venv/bin/python __init__.py
+$ .venv/bin/python main.py
 ```
+<p>By default you can access the web app by visiting the <a> localohst:5000 </a> on your web browser</p>
 
 ## Todo
 - [ ] Fix Docker file
