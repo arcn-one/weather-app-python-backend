@@ -9,7 +9,7 @@
 $ git clone https://github.com/phaeseval/weather-app-python-backend
 ```
 
-### Docker <span style="color:red">(!!currently broken)</span>
+### Docker
 
 * To install in a docker container run: 
 ```sh
