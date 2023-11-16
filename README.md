@@ -2,7 +2,7 @@
 * The aim of this project is to build a backend API for a personalised weather recommendation and severe weather warning system. The index.html in the templates directory will be removed in future releases: it is there to test the api until a proper frontend wrapper is developed.
 ## Installation
 * Dependencies
-  * Docker
+  * Docker (Optional)
   * Python
 
 * Clone the git repo
