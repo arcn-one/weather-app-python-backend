@@ -20,7 +20,17 @@ def weather_data():
     weather_result = forecast.get_weather(lat, long)
     return jsonify(weather_result)
   else:
-    return render_template('html-files/index.html')
+    return render_template('index.html')
+
+# testig coarse location
+@app.route('/coarse', methods=['GET', 'POST'])
+def weather_data_coarse(): 
+  if request.method == 'POST':
+    lat, long = lat_long.get_coarse_location()
+    weather_result = forecast.get_weather(lat, long)
+    return jsonify(weather_result)
+  else:
+    return render_template('index.html')
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0") # Running the Flask application on the local network
