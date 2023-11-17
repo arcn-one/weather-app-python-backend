@@ -1,4 +1,6 @@
 from flask import Flask, jsonify, request, render_template
+from werkzeug.exceptions import HTTPException
+import json
 
 # Importing local modules that forecasts weather and provides latitude and longitude
 import lat_long
@@ -31,6 +33,18 @@ def weather_data_coarse():
     return jsonify(weather_result)
   else:
     return render_template('index.html')
+
+# Handling errors
+@app.errorhandler(Exception)
+def handle_exceoption(error):
+  response = error.get_response()
+  response.data = json.dumps({
+    "code": error.code,
+    "name": error.name,
+    "description": error.description,
+  })
+  response.content_type = "application/json"
+  return response
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0") # Running the Flask application on the local network
