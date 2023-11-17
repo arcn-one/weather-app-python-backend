@@ -11,27 +11,27 @@ app = Flask(__name__)
 # Flask decorator for homepage and html links
 @app.route('/')
 def index():
-  return render_template('index.html')
+  return jsonify('msg: welcome to the weatherapp api')
 
 # Function to get input from form and return forecast in json
-@app.route('/submit', methods=['GET', 'POST'])
+@app.route('/submit/<city>')
 def weather_data(): 
-  if request.method == 'POST':
+  try:
     city = request.form.get('city')
     lat, long = lat_long.get_lat_long(city)
     weather_result = forecast.get_weather(lat, long)
     return jsonify(weather_result)
-  else:
+  except:
     return render_template('index.html')
 
 # testig coarse location
-@app.route('/coarse', methods=['GET', 'POST'])
+@app.route('/coarse')
 def weather_data_coarse(): 
-  if request.method == 'POST':
+  try:
     lat, long = lat_long.get_coarse_location()
     weather_result = forecast.get_weather(lat, long)
     return jsonify(weather_result)
-  else:
+  except:
     return render_template('index.html')
 
 # Handling errors

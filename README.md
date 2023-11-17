@@ -36,3 +36,4 @@ $ .venv/bin/python -m pip install -r requirements.txt
 $ .venv/bin/python main.py
 ```
 <p>By default you can access the web app by visiting the localohst:5000 on your web browser</p>
+<p>You can access get a weather forecast using coarse location using `localhost:<port>/coarse`</p>
