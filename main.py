@@ -15,7 +15,7 @@ def index():
 
 # Function to get input from form and return forecast in json
 @app.route('/submit/<city>')
-def weather_data(): 
+def weather_data_precise(): 
   try:
     city = request.form.get('city')
     lat, long = lat_long.get_lat_long(city)
