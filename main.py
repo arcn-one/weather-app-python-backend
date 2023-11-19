@@ -3,7 +3,7 @@ from werkzeug.exceptions import HTTPException
 import json
 
 # Importing local modules that forecasts weather and provides latitude and longitude
-import lat_long
+import location
 import forecast
 
 app = Flask(__name__)
@@ -18,7 +18,7 @@ def index():
 def weather_data_precise(): 
   try:
     city = request.form.get('city')
-    lat, long = lat_long.get_lat_long(city)
+    lat, long = location.get_precise_location(city)
     weather_result = forecast.get_weather(lat, long)
     return jsonify(weather_result)
   except:
@@ -28,7 +28,7 @@ def weather_data_precise():
 @app.route('/coarse')
 def weather_data_coarse(): 
   try:
-    lat, long = lat_long.get_coarse_location()
+    lat, long = location.get_coarse_location()
     weather_result = forecast.get_weather(lat, long)
     return jsonify(weather_result)
   except:

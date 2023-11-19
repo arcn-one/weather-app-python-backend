@@ -3,7 +3,7 @@ import json
 from urllib.request import urlopen
 
 # Defining a function to get the latitude and longitude of a given city
-def get_lat_long(city):
+def get_precise_location(city):
    # Creating an instance of the Nominatim class: without this geocode fails
    location = Nominatim(user_agent="testapp").geocode(city)
    return location.latitude, location.longitude
