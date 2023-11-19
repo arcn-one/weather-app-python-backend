@@ -11,7 +11,7 @@ app = Flask(__name__)
 # Flask decorator for homepage and html links
 @app.route('/')
 def index():
-  return jsonify('msg: welcome to the weatherapp api')
+  return jsonify({'message':'welcome to the weatherapp api'})
 
 # Function to get input from form and return forecast in json
 @app.route('/submit/<city>')
