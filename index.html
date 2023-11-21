@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vue.js App</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <select v-model="selectedUrl">
+            <option value="http://localhost:5000">Welcome</option>
+            <option value="http://localhost:5000/coarse">Coarse</option>
+            <option value="http://localhost:5000/submit">Precise</option>
+        </select>
+        <button @click="fetchData">Fetch Data</button>
+        <p>{{ jsonData }}</p>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    jsonData: null,
+                    selectedUrl: 'http://localhost:5000'
+                }
+            },
+            methods: {
+                fetchData() {
+                    axios.get(this.selectedUrl)
+                        .then(response => (this.jsonData = response.data))
+                        .catch(error => console.log(error));
+                }
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+
+</html>
