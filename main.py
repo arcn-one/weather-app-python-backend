@@ -4,7 +4,7 @@ import json
 import time
 
 # Importing local modules that forecasts weather and provides latitude and longitude
-import location
+from location import GetLocation
 import forecast
 
 app = Flask(__name__)
@@ -19,7 +19,7 @@ def index():
 def weather_data_precise(): 
   try:
     city = request.form.get('city')
-    lat, long = location.GetLocation(city_name=city).get_cordinates()
+    lat, long = GetLocation(city_name=city).get_cordinates()
     weather_result = forecast.get_weather(lat, long)
     return jsonify(weather_result)
   except:
@@ -30,7 +30,7 @@ def weather_data_precise():
 def weather_data_coarse(): 
   try:
     ip_address="8.8.8.8"
-    lat, long = location.GetLocation(ip_address=ip_address).get_cordinates()
+    lat, long = GetLocation(ip_address=ip_address).get_cordinates()
     weather_result = forecast.get_weather(lat, long)
     return jsonify(weather_result)
   except:
