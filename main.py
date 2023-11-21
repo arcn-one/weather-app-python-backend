@@ -15,15 +15,16 @@ def index():
   return jsonify({'message':'welcome to the weatherapp api'})
 
 # Function to get input from form and return forecast in json
-@app.route('/submit/<city>')
+@app.route('/submit/<city>', methods=["POST"])
 def weather_data_precise(): 
   try:
     city = request.form.get('city')
     lat, long = GetLocation(city_name=city).get_cordinates()
     weather_result = forecast.get_weather(lat, long)
     return jsonify(weather_result)
-  except:
-    raise ValueError("An error occured")
+  except Exception as e:
+    app.logger.error(f"An error occurred: {e}")
+    return jsonify({"error": "An error occurred"}), 500
 
 # testig coarse location
 @app.route('/coarse')
@@ -33,8 +34,9 @@ def weather_data_coarse():
     lat, long = GetLocation(ip_address=ip_address).get_cordinates()
     weather_result = forecast.get_weather(lat, long)
     return jsonify(weather_result)
-  except:
-    raise ValueError("An error occured")
+  except Exception as e:
+    app.logger.error(f"An error occurred: {e}")
+    return jsonify({"error": "An error occurred"}), 500
 
 # Handling errors
 @app.errorhandler(Exception)
