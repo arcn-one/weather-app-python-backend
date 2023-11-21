@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, render_template
+from flask_cors import CORS
 from werkzeug.exceptions import HTTPException
 import json
 import time
@@ -8,6 +9,7 @@ from location import GetLocation
 import forecast
 
 app = Flask(__name__)
+CORS(app)
 
 # Flask decorator for homepage and html links
 @app.route('/')
