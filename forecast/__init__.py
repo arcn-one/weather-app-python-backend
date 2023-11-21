@@ -1,20 +1,19 @@
 from flask import jsonify
 import requests
 
-# Function to get weather data based on latitude and longitude
-def get_weather(lat, long):
-  url = "https://api.open-meteo.com/v1/forecast"
-  
-  # Parameters for the API request
-  params = {
-    "latitude": lat,
-    "longitude": long,
-    "current": ["temperature_2m", "rain"],
-    "hourly": ["temperature_2m", "rain"],
-  }
+class Forecast:
+   def __init__(self, lat, long):
+       self.url = "https://api.open-meteo.com/v1/forecast"
+       self.params = {
+           "latitude": lat,
+           "longitude": long,
+           "current": ["temperature_2m", "rain"],
+           "hourly": ["temperature_2m", "rain"],
+       }
+       self.response = self.get_weather()
 
-  # Making a GET request to the API with the specified parameters
-  response = requests.get(url, params=params)
+   def get_weather(self):
+       return requests.get(self.url, params=self.params)
 
-  return response.json()
-
+   def get_json(self):
+       return self.response.json()
