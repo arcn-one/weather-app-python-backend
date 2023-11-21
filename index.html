@@ -14,7 +14,14 @@
             <option value="http://localhost:5000/coarse">Coarse</option>
             <option value="http://localhost:5000/submit">Precise</option>
         </select>
-        <button @click="fetchData">Fetch Data</button>
+        <button @click="fetchData" :disabled="isFetchDataDisabled">Fetch Data</button>
+        <div v-if="selectedUrl === 'http://localhost:5000/submit'">
+            <form @submit.prevent="submitForm">
+                <label for="city">City:</label>
+                <input id="city" v-model="city" type="text">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
         <p>{{ jsonData }}</p>
     </div>
 
@@ -23,12 +30,23 @@
             data() {
                 return {
                     jsonData: null,
+                    city: '',
                     selectedUrl: 'http://localhost:5000'
+                }
+            },
+            computed: {
+                isFetchDataDisabled() {
+                    return this.selectedUrl === 'http://localhost:5000/submit';
                 }
             },
             methods: {
                 fetchData() {
                     axios.get(this.selectedUrl)
+                        .then(response => (this.jsonData = response.data))
+                        .catch(error => console.log(error));
+                },
+                submitForm() {
+                    axios.post(this.selectedUrl, { city: this.city })
                         .then(response => (this.jsonData = response.data))
                         .catch(error => console.log(error));
                 }
