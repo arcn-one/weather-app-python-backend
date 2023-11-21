@@ -1,5 +1,7 @@
 flask
 geopy
 requests-cache
+requests
+gpsd-py3
 pandas
 retry-requests

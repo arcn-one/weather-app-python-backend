@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, render_template
 from werkzeug.exceptions import HTTPException
 import json
+import time
 
 # Importing local modules that forecasts weather and provides latitude and longitude
 import location
@@ -18,21 +19,22 @@ def index():
 def weather_data_precise(): 
   try:
     city = request.form.get('city')
-    lat, long = location.get_precise_location(city)
+    lat, long = location.GetLocation(city_name=city).get_cordinates()
     weather_result = forecast.get_weather(lat, long)
     return jsonify(weather_result)
   except:
-    return render_template('index.html')
+    raise ValueError("An error occured")
 
 # testig coarse location
 @app.route('/coarse')
 def weather_data_coarse(): 
   try:
-    lat, long = location.get_coarse_location()
+    ip_address="8.8.8.8"
+    lat, long = location.GetLocation(ip_address=ip_address).get_cordinates()
     weather_result = forecast.get_weather(lat, long)
     return jsonify(weather_result)
   except:
-    return render_template('index.html')
+    raise ValueError("An error occured")
 
 # Handling errors
 @app.errorhandler(Exception)
