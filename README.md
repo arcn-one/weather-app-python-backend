@@ -25,15 +25,19 @@ $ docker run -p 5000:5000 <image-name>
 ### Local Installation
 * Create a python-env to avoid breaking your system:
 ```sh
-$ python -m venv .
+$ python -m .venv
 ```
 * Install dependencies on requirements.txt:
+<p>To enter the environtment:</p>
+
 ```sh 
-$ .venv/bin/python -m pip install -r requirements.txt
+$ source .venv/bin/activate
 ```
 * Run the `main.py`:
 ```sh
-$ .venv/bin/python main.py
+$ python main.py
 ```
-<p>By default you can access the web app by visiting the localohst:5000 on your web browser</p>
-You can access get a weather forecast using coarse location using `localhost:<port>/coarse`
+<p>By default you can access the api on <b>localhost:5000</b></p>
+<p>You can access get a weather forecast using coarse location using <b> localhost:<port>/coarse </b> </p>
+
+* Using front-end webapp: To use the front-end webapp serve the index.html on teplates directory.
