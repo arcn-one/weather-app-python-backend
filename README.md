@@ -7,7 +7,7 @@
 
 * Clone the git repo
 ```sh
-$ git clone https://github.com/phaeseval/weather-app-python-backend
+$ git clone https://github.com/arcn-one/weather-app-python-backend
 ```
 
 ### Docker
