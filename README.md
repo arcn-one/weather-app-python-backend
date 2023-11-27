@@ -38,6 +38,6 @@ $ source .venv/bin/activate
 $ python main.py
 ```
 <p>By default you can access the api on <b>localhost:5000</b></p>
-<p>You can access get a weather forecast using coarse location using <b> localhost:<port>/coarse </b> </p>
+<p>You can access get a weather forecast using coarse location using <b> localhost:{port}/coarse </b> </p>
 
 * Using front-end webapp: To use the front-end webapp serve the index.html on teplates directory.
