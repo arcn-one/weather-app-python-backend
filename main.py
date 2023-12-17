@@ -22,7 +22,7 @@ def index():
   return jsonify({'message':'welcome to the weatherapp api'})
 
 # Function to get input from form and return forecast in json
-@app.route('/submit', methods=["POST"])
+@app.route('/submit/<city>', methods=["POST", "GET"])
 def weather_data_precise(): 
   try:
     city = request.form.get('city')
